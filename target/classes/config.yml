@@ -1,0 +1,21 @@
+# material names must be as specified using the bukkit material ENUM CONSTANTS as found in the file Materials.txt, or here: http://jd.bukkit.org/apidocs/org/bukkit/Material.html
+farmer_material: WHEAT
+butcher_material: RAW_BEEF
+librarian_material: BOOK
+smith_material: IRON_INGOT
+priest_material: REDSTONE
+
+# worlds: [name of world] true|false - whether Profession is active in the world
+worlds:
+  world: true
+  some_other_world: false
+
+# lang: language localization for Profession messages
+# english -> EN
+# french -> FR
+# german -> DE
+# spanish -> ES
+lang: EN
+
+# consume: true|false - whether right-clicking on the villager consumes the material
+consume: false
