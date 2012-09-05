@@ -2,7 +2,6 @@ package me.eccentric_nz.plugins.profession;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,7 +14,6 @@ public class ProfessionSetExecutor extends JavaPlugin implements CommandExecutor
     private Profession plugin;
     private String villagerType;
     private String setMaterial;
-    private static Logger log;
     private Villager.Profession v;
     private HashMap tma_hm;
     private HashMap tfa_hm;
