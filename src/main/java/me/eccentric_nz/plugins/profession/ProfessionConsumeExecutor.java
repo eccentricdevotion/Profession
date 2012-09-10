@@ -1,7 +1,6 @@
 package me.eccentric_nz.plugins.profession;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,7 +11,6 @@ public class ProfessionConsumeExecutor extends JavaPlugin implements CommandExec
 
     private Profession plugin;
     private String consume;
-    private static Logger log;
     private HashMap tma_hm;
     private HashMap tfa_hm;
     private HashMap ntf_hm;
