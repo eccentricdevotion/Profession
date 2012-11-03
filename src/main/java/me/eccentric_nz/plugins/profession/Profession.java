@@ -2,8 +2,6 @@ package me.eccentric_nz.plugins.profession;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -22,7 +20,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Profession extends JavaPlugin implements Listener {
 
-    private static Logger log;
     public PluginDescriptionFile pdfFile;
     public FileConfiguration config = null;
     private File myconfigfile = null;
@@ -227,7 +224,7 @@ public class Profession extends JavaPlugin implements Listener {
             Constants.NO_MATS_MESSAGE = nms + ChatColor.YELLOW + f_str + " -> FARMER\n" + ChatColor.RED + b_str + " -> BUTCHER\n" + ChatColor.BLUE + l_str + " -> LIBRARIAN\n" + ChatColor.GRAY + s_str + " -> BLACKSMITH\n" + ChatColor.DARK_RED + p_str + " -> PRIEST";
 
         } catch (Exception e) {
-            log.log(Level.WARNING, "{0} failed to retrieve configuration from directory. Using defaults.", Constants.MY_PLUGIN_NAME);
+            System.err.println(Constants.MY_PLUGIN_NAME + " failed to retrieve configuration from directory. Using defaults.");
         }
         return config;
     }
@@ -243,7 +240,7 @@ public class Profession extends JavaPlugin implements Listener {
             out.close();
             in.close();
         } catch (Exception e) {
-            log.log(Level.INFO, "{0} could not save the config file.", Constants.MY_PLUGIN_NAME);
+            System.err.println(Constants.MY_PLUGIN_NAME + " could not save the config file.");
         }
     }
 
@@ -254,7 +251,7 @@ public class Profession extends JavaPlugin implements Listener {
         try {
             config.save(myconfigfile);
         } catch (IOException ex) {
-            Logger.getLogger(JavaPlugin.class.getName()).log(Level.SEVERE, "Could not save config to " + myconfigfile, ex);
+            System.err.println(Constants.MY_PLUGIN_NAME + " Could not save config to " + myconfigfile + " - " + ex);
         }
     }
 }

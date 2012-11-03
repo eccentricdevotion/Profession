@@ -37,7 +37,6 @@ public class ProfessionConsumeExecutor extends JavaPlugin implements CommandExec
                 sender.sendMessage(ChatColor.RED + tfa);
                 return false;
             }
-
             // check they typed true of false
             consume = args[0].toLowerCase();
 
@@ -48,11 +47,11 @@ public class ProfessionConsumeExecutor extends JavaPlugin implements CommandExec
                 return false;
             }
             // set the config value
-            plugin.config.set("consume",Boolean.valueOf(consume));
+            plugin.config.set("consume", Boolean.valueOf(consume));
 
             plugin.saveCustomConfig();
             plugin.loadConfig();
-            css_hm =  (consume.equals("false")) ? Constants.cds() : Constants.cen();
+            css_hm = (consume.equals("false")) ? Constants.cds() : Constants.cen();
             String css = (String) css_hm.get(Constants.LANGUAGE);
             sender.sendMessage(css);
             return true;

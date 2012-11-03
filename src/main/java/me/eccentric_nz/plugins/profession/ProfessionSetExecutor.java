@@ -42,13 +42,12 @@ public class ProfessionSetExecutor extends JavaPlugin implements CommandExecutor
                 sender.sendMessage(ChatColor.RED + tfa);
                 return false;
             }
-				villagerType = args[0].toUpperCase();
-
-				// check they typed a valid villager type
-				if (!Arrays.asList(Constants.V_TYPES).contains(villagerType)) {
+            villagerType = args[0].toUpperCase();
+            // check they typed a valid villager type
+            if (!Arrays.asList(Constants.V_TYPES).contains(villagerType)) {
                 nvv_hm = Constants.nvv();
                 String nvv = (String) nvv_hm.get(Constants.LANGUAGE);
-                sender.sendMessage(ChatColor.RED + nvv +" farmer | librarian | butcher | blacksmith | priest");
+                sender.sendMessage(ChatColor.RED + nvv + " farmer | librarian | butcher | blacksmith | priest");
                 return false;
             }
             // check they typed a valid material
@@ -60,30 +59,29 @@ public class ProfessionSetExecutor extends JavaPlugin implements CommandExecutor
                 sender.sendMessage(ChatColor.RED + nvm);
                 return false;
             }
-
             // check the villager type
             v = Villager.Profession.valueOf(villagerType);
             switch (v) {
                 case FARMER:
-                   // set the config value
-                   plugin.config.set("farmer_material", setMaterial);
-                   break;
+                    // set the config value
+                    plugin.config.set("farmer_material", setMaterial);
+                    break;
                 case BUTCHER:
-                   // set the config value
-                   plugin.config.set("butcher_material", setMaterial);
-                   break;
+                    // set the config value
+                    plugin.config.set("butcher_material", setMaterial);
+                    break;
                 case LIBRARIAN:
-                   // set the config value
-                   plugin.config.set("librarian_material", setMaterial);
-                   break;
+                    // set the config value
+                    plugin.config.set("librarian_material", setMaterial);
+                    break;
                 case BLACKSMITH:
-                   // set the config value
-                   plugin.config.set("smith_material", setMaterial);
-                   break;
+                    // set the config value
+                    plugin.config.set("smith_material", setMaterial);
+                    break;
                 case PRIEST:
-                   // set the config value
-                   plugin.config.set("priest_material", setMaterial);
-                   break;
+                    // set the config value
+                    plugin.config.set("priest_material", setMaterial);
+                    break;
             }
             plugin.saveCustomConfig();
             plugin.loadConfig();
