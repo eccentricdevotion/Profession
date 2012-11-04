@@ -16,4 +16,5 @@ xcuserdata
 # svn & cvs
 .svn
 CVS
+target/
 /target/
