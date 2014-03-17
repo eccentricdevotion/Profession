@@ -1,26 +1,14 @@
 package me.eccentric_nz.plugins.profession;
 
-import java.util.HashMap;
-import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
 
-public class ProfessionWorldExecutor extends JavaPlugin implements CommandExecutor {
+public class ProfessionWorldExecutor implements CommandExecutor {
 
-    private Profession plugin;
-    private World worldName;
-    private String profActive;
-    private HashMap tma_hm;
-    private HashMap tfa_hm;
-    private HashMap wnf_hm;
-    private HashMap ntf_hm;
-    private HashMap vms_hm;
-    private HashMap wss_hm;
-    private List<World> worlds;
+    private final Profession plugin;
 
     public ProfessionWorldExecutor(Profession plugin) {
         this.plugin = plugin;
@@ -32,43 +20,30 @@ public class ProfessionWorldExecutor extends JavaPlugin implements CommandExecut
         // check there is the right number of arguments
         if (cmd.getName().equalsIgnoreCase("worldprof")) {
             if (args.length > 2) {
-                tma_hm = Constants.tma();
-                String tma = (String) tma_hm.get(Constants.LANGUAGE);
-                sender.sendMessage(ChatColor.RED + tma);
+                sender.sendMessage(ChatColor.RED + Constants.tma().get(plugin.getLanguage()));
                 return false;
             }
             if (args.length < 2) {
-                tfa_hm = Constants.tfa();
-                String tfa = (String) tfa_hm.get(Constants.LANGUAGE);
-                sender.sendMessage(ChatColor.RED + tfa);
+                sender.sendMessage(ChatColor.RED + Constants.tfa().get(plugin.getLanguage()));
                 return false;
             }
-            worldName = plugin.getServer().getWorld(args[0]);
-            //worlds = plugin.getServer().getWorlds();
-
+            World worldName = plugin.getServer().getWorld(args[0]);
             // check they typed a valid world
-            if (plugin.getServer().getWorld(args[0]) == null) {
-                wnf_hm = Constants.wnf();
-                String wnf = (String) wnf_hm.get(Constants.LANGUAGE);
-                sender.sendMessage(ChatColor.RED + wnf);
+            if (worldName == null) {
+                sender.sendMessage(ChatColor.RED + Constants.wnf().get(plugin.getLanguage()));
                 return false;
             }
             // check they typed true of false
-            profActive = args[1].toLowerCase();
-
+            String profActive = args[1].toLowerCase();
             if (!profActive.equals("true") && !profActive.equals("false")) {
-                ntf_hm = Constants.ntf();
-                String ntf = (String) ntf_hm.get(Constants.LANGUAGE);
-
-                sender.sendMessage(ChatColor.RED + ntf);
+                sender.sendMessage(ChatColor.RED + Constants.ntf().get(plugin.getLanguage()));
                 return false;
             }
             // set the config value
-            plugin.config.set("worlds." + worldName.getName(), Boolean.valueOf(profActive));
-            plugin.saveCustomConfig();
-            plugin.loadConfig();
-            wss_hm = (profActive.equals("false")) ? Constants.wds(args[0]) : Constants.wes(args[0]);
-            String wss = (String) wss_hm.get(Constants.LANGUAGE);
+            plugin.getConfig().set("worlds." + worldName.getName(), Boolean.valueOf(profActive));
+            plugin.saveConfig();
+            plugin.loadMaterials();
+            String wss = (profActive.equals("false")) ? Constants.wds(args[0]).get(plugin.getLanguage()) : Constants.wes(args[0]).get(plugin.getLanguage());
             sender.sendMessage(wss);
             return true;
         }

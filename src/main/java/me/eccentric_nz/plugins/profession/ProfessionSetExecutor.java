@@ -1,25 +1,15 @@
 package me.eccentric_nz.plugins.profession;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Villager;
-import org.bukkit.plugin.java.JavaPlugin;
 
-public class ProfessionSetExecutor extends JavaPlugin implements CommandExecutor {
+public class ProfessionSetExecutor implements CommandExecutor {
 
-    private Profession plugin;
-    private String villagerType;
-    private String setMaterial;
-    private Villager.Profession v;
-    private HashMap tma_hm;
-    private HashMap tfa_hm;
-    private HashMap nvv_hm;
-    private HashMap nvm_hm;
-    private HashMap vms_hm;
+    private final Profession plugin;
 
     public ProfessionSetExecutor(Profession plugin) {
         this.plugin = plugin;
@@ -31,63 +21,62 @@ public class ProfessionSetExecutor extends JavaPlugin implements CommandExecutor
         // check there is the right number of arguments
         if (cmd.getName().equalsIgnoreCase("setprof")) {
             if (args.length > 2) {
-                tma_hm = Constants.tma();
-                String tma = (String) tma_hm.get(Constants.LANGUAGE);
-                sender.sendMessage(ChatColor.RED + tma);
+                sender.sendMessage(ChatColor.RED + Constants.tma().get(plugin.getLanguage()));
                 return false;
             }
             if (args.length < 2) {
-                tfa_hm = Constants.tfa();
-                String tfa = (String) tfa_hm.get(Constants.LANGUAGE);
-                sender.sendMessage(ChatColor.RED + tfa);
+                sender.sendMessage(ChatColor.RED + Constants.tfa().get(plugin.getLanguage()));
                 return false;
             }
-            villagerType = args[0].toUpperCase();
+            String villagerType = args[0].toUpperCase();
             // check they typed a valid villager type
-            if (!Arrays.asList(Constants.V_TYPES).contains(villagerType)) {
-                nvv_hm = Constants.nvv();
-                String nvv = (String) nvv_hm.get(Constants.LANGUAGE);
-                sender.sendMessage(ChatColor.RED + nvv + " farmer | librarian | butcher | blacksmith | priest");
-                return false;
+            Villager.Profession v = null;
+            try {
+                v = Villager.Profession.valueOf(villagerType);
+            } catch (IllegalArgumentException e) {
+                if (!villagerType.equals("ZOMBIE")) {
+                    sender.sendMessage(ChatColor.RED + Constants.nvv().get(plugin.getLanguage()) + " farmer | librarian | butcher | blacksmith | priest | zombie");
+                    return false;
+                }
             }
             // check they typed a valid material
-            setMaterial = args[1].toUpperCase();
-            if (!Arrays.asList(Constants.MATERIAL_LIST).contains(setMaterial)) {
-                nvm_hm = Constants.nvm();
-                String nvm = (String) nvm_hm.get(Constants.LANGUAGE);
-
-                sender.sendMessage(ChatColor.RED + nvm);
+            String setMaterial = args[1].toUpperCase();
+            try {
+                Material.valueOf(setMaterial);
+            } catch (IllegalArgumentException e) {
+                sender.sendMessage(ChatColor.RED + Constants.nvm().get(plugin.getLanguage()));
                 return false;
             }
             // check the villager type
-            v = Villager.Profession.valueOf(villagerType);
-            switch (v) {
-                case FARMER:
-                    // set the config value
-                    plugin.config.set("farmer_material", setMaterial);
-                    break;
-                case BUTCHER:
-                    // set the config value
-                    plugin.config.set("butcher_material", setMaterial);
-                    break;
-                case LIBRARIAN:
-                    // set the config value
-                    plugin.config.set("librarian_material", setMaterial);
-                    break;
-                case BLACKSMITH:
-                    // set the config value
-                    plugin.config.set("smith_material", setMaterial);
-                    break;
-                case PRIEST:
-                    // set the config value
-                    plugin.config.set("priest_material", setMaterial);
-                    break;
+            if (v != null && !villagerType.equals("ZOMBIE")) {
+                switch (v) {
+                    case FARMER:
+                        // set the config value
+                        plugin.getConfig().set("farmer_material", setMaterial);
+                        break;
+                    case BUTCHER:
+                        // set the config value
+                        plugin.getConfig().set("butcher_material", setMaterial);
+                        break;
+                    case LIBRARIAN:
+                        // set the config value
+                        plugin.getConfig().set("librarian_material", setMaterial);
+                        break;
+                    case BLACKSMITH:
+                        // set the config value
+                        plugin.getConfig().set("smith_material", setMaterial);
+                        break;
+                    default:
+                        // set the config value
+                        plugin.getConfig().set("priest_material", setMaterial);
+                        break;
+                }
+            } else {
+                plugin.getConfig().set("zombie_material", setMaterial);
             }
-            plugin.saveCustomConfig();
-            plugin.loadConfig();
-            vms_hm = Constants.vms(villagerType, setMaterial);
-            String vms = (String) vms_hm.get(Constants.LANGUAGE);
-            sender.sendMessage(vms);
+            plugin.saveConfig();
+            plugin.loadMaterials();
+            sender.sendMessage(Constants.vms(villagerType, setMaterial).get(plugin.getLanguage()));
             return true;
         }
         // If this has happened the function will break and return true. if this hasn't happened the a value of false will be returned.

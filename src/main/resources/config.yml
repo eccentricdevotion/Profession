@@ -1,9 +1,10 @@
-# material names must be as specified using the bukkit material ENUM CONSTANTS as found in the file Materials.txt, or here: http://jd.bukkit.org/apidocs/org/bukkit/Material.html
+# material names must be as specified using the bukkit material ENUM CONSTANTS as found here: http://jd.bukkit.org/apidocs/org/bukkit/Material.html
 farmer_material: WHEAT
 butcher_material: RAW_BEEF
 librarian_material: BOOK
 smith_material: IRON_INGOT
 priest_material: REDSTONE
+zombie_material: ROTTEN_FLESH
 
 # worlds: [name of world] true|false - whether Profession is active in the world
 worlds:

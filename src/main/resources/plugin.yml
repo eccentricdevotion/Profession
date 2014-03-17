@@ -13,6 +13,9 @@ permissions:
    profession.change:
       description: Allow players to change the profession of villagers.
       default: op
+   profession.zombie:
+      description: Allow players to change villagers into zombie villagers.
+      default: op
 commands:
    setprof:
       aliases: sprof
