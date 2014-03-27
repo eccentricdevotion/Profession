@@ -1,4 +1,4 @@
-package me.eccentric_nz.plugins.profession;
+package me.eccentric_nz.profession;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

@@ -1,4 +1,4 @@
-package me.eccentric_nz.plugins.profession;
+package me.eccentric_nz.profession;
 
 import java.util.HashMap;
 import org.bukkit.ChatColor;

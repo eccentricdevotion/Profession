@@ -1,7 +1,7 @@
 /*
  *  Copyright 2014 eccentric_nz.
  */
-package me.eccentric_nz.plugins.profession;
+package me.eccentric_nz.profession;
 
 import java.io.File;
 import org.bukkit.configuration.file.FileConfiguration;
