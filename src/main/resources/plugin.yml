@@ -1,36 +1,37 @@
 author: eccentric_nz
 database: false
 description: Allows you to change the profession of villagers by clicking on them
- with various items.
+  with various items.
 main: me.eccentric_nz.profession.Profession
 name: Profession
 load: POSTWORLD
 dev-url: http://dev.bukkit.org/server-mods/profession/
 url: http://www.thenosefairy.co.nz/
-version: '1.3.4'
+version: 1.3.5
+api-version: 1.13
 permissions:
-   profession.change:
-      description: Allow players to change the profession of villagers.
-      default: op
-   profession.zombie:
-      description: Allow players to change villagers into zombie villagers.
-      default: op
+  profession.change:
+    description: Allow players to change the profession of villagers.
+    default: op
+  profession.zombie:
+    description: Allow players to change villagers into zombie villagers.
+    default: op
 commands:
-   setprof:
-      aliases: sprof
-      description: Change the material needed to change a villager's profession.
-      usage: /<command> [Villager type] [Material]
-      permission: profession.setprof
-      permission-message: You don't have the permission to set profession materials.
-   worldprof:
-      aliases: wprof
-      description: Toggle villager profession changing off and on per world.
-      usage: /<command> [World] [true|false]
-      permission: profession.world
-      permission-message: You don't have the permission to toggle profession setting on or off.
-   consumeprof:
-      aliases: cprof
-      description: Toggle material consumption off and on.
-      usage: /<command> [true|false]
-      permission: profession.consume
-      permission-message: You don't have the permission to toggle material consumption on or off.
+  setprof:
+    aliases: sprof
+    description: Change the material needed to change a villager's profession.
+    usage: /<command> [Villager type] [Material]
+    permission: profession.setprof
+    permission-message: You don't have the permission to set profession materials.
+  worldprof:
+    aliases: wprof
+    description: Toggle villager profession changing off and on per world.
+    usage: /<command> [World] [true|false]
+    permission: profession.world
+    permission-message: You don't have the permission to toggle profession setting on or off.
+  consumeprof:
+    aliases: cprof
+    description: Toggle material consumption off and on.
+    usage: /<command> [true|false]
+    permission: profession.consume
+    permission-message: You don't have the permission to toggle material consumption on or off.
