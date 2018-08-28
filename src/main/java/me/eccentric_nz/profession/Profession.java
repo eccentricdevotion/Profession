@@ -7,20 +7,25 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Profession extends JavaPlugin implements Listener {
 
-    private Material f;
-    private Material b;
-    private Material l;
-    private Material s;
-    private Material p;
-    private Material z;
+    private Material farm;
+    private Material fish;
+    private Material shep;
+    private Material flet;
+    private Material libr;
+    private Material cart;
+    private Material cler;
+    private Material armo;
+    private Material weap;
+    private Material tool;
+    private Material butc;
+    private Material leat;
+    private Material nitw;
     private final String pluginName = "[Profession]";
     private String language;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
-        ProfessionConfiguration pc = new ProfessionConfiguration(this);
-        pc.checkConfig();
         loadMaterials();
         getServer().getPluginManager().registerEvents(new ProfessionListener(this), this);
         getCommand("setprof").setExecutor(new ProfessionSetExecutor(this));
@@ -35,49 +40,95 @@ public class Profession extends JavaPlugin implements Listener {
 
     public void loadMaterials() {
         // read the material values we need and convert them to ENUM
-        String f_str = getConfig().getString("farmer_material");
-        String b_str = getConfig().getString("butcher_material");
-        String l_str = getConfig().getString("librarian_material");
-        String s_str = getConfig().getString("smith_material");
-        String p_str = getConfig().getString("priest_material");
-        String z_str = getConfig().getString("zombie_material");
+        /*
+        FARMER(Villager.Profession.FARMER),
+        FISHERMAN(Villager.Profession.FARMER),
+        SHEPHERD(Villager.Profession.FARMER),
+        FLETCHER(Villager.Profession.FARMER),
+        LIBRARIAN(Villager.Profession.LIBRARIAN),
+        CARTOGRAPHER(Villager.Profession.LIBRARIAN),
+        CLERIC(Villager.Profession.PRIEST),
+        ARMORER(Villager.Profession.BLACKSMITH),
+        WEAPON_SMITH(Villager.Profession.BLACKSMITH),
+        TOOL_SMITH(Villager.Profession.BLACKSMITH),
+        BUTCHER(Villager.Profession.BUTCHER),
+        LEATHERWORKER(Villager.Profession.BUTCHER),
+        NITWIT(Villager.Profession.NITWIT);
+         */
+        try {
+            farm = Material.getMaterial(getConfig().getString("farmer_material"));
+            fish = Material.getMaterial(getConfig().getString("fisherman_material"));
+            shep = Material.getMaterial(getConfig().getString("shepard_material"));
+            flet = Material.getMaterial(getConfig().getString("fletcher_material"));
+            libr = Material.getMaterial(getConfig().getString("librarian_material"));
+            cart = Material.getMaterial(getConfig().getString("cartographer_material"));
+            cler = Material.getMaterial(getConfig().getString("priest_material"));
+            armo = Material.getMaterial(getConfig().getString("armorer_material"));
+            weap = Material.getMaterial(getConfig().getString("weapon_smith_material"));
+            tool = Material.getMaterial(getConfig().getString("tool_smith__material"));
+            butc = Material.getMaterial(getConfig().getString("butcher_material"));
+            leat = Material.getMaterial(getConfig().getString("leatherworker_material"));
+            nitw = Material.getMaterial(getConfig().getString("nitwit_material"));
+        } catch (IllegalArgumentException e) {
 
-        // convert strings to Material ENUMs
-        f = Material.getMaterial(f_str);
-        b = Material.getMaterial(b_str);
-        l = Material.getMaterial(l_str);
-        s = Material.getMaterial(s_str);
-        p = Material.getMaterial(p_str);
-        z = Material.getMaterial(z_str);
+        }
 
         // read the language value
         language = getConfig().getString("lang");
 
-        Constants.NO_MATS_MESSAGE = Constants.nms().get(language) + ChatColor.YELLOW + f_str + " -> FARMER\n" + ChatColor.RED + b_str + " -> BUTCHER\n" + ChatColor.BLUE + l_str + " -> LIBRARIAN\n" + ChatColor.GRAY + s_str + " -> BLACKSMITH\n" + ChatColor.DARK_RED + p_str + " -> PRIEST\n" + ChatColor.DARK_GREEN + z_str + " -> ZOMBIE VILLAGER";
+        Constants.NO_MATS_MESSAGE = Constants.nms().get(language) + ChatColor.YELLOW + farm.toString() + " -> FARMER\n" + ChatColor.YELLOW + fish.toString() + " -> FISHERMAN\n" + ChatColor.YELLOW + shep.toString() + " -> SHEPHERD\n" + ChatColor.YELLOW + flet.toString() + " -> FLETCHER\n" + ChatColor.RED + butc.toString() + " -> BUTCHER\n" + ChatColor.RED + leat.toString() + " -> LEATHERWORKER\n" + ChatColor.BLUE + libr.toString() + " -> LIBRARIAN\n" + ChatColor.BLUE + cart.toString() + " -> CARTOGRAPHER\n" + ChatColor.GRAY + armo.toString() + " -> ARMORER\n" + ChatColor.GRAY + weap.toString() + " -> WEAPON_SMITH\n" + ChatColor.GRAY + tool.toString() + " -> TOOL_SMITH\n" + ChatColor.DARK_RED + cler + " -> CLERIC\n" + ChatColor.DARK_GREEN + nitw + " -> NITWIT";
     }
 
-    public Material getF() {
-        return f;
+    public Material getFarm() {
+        return farm;
     }
 
-    public Material getB() {
-        return b;
+    public Material getFish() {
+        return fish;
     }
 
-    public Material getL() {
-        return l;
+    public Material getShep() {
+        return shep;
     }
 
-    public Material getS() {
-        return s;
+    public Material getFlet() {
+        return flet;
     }
 
-    public Material getP() {
-        return p;
+    public Material getLibr() {
+        return libr;
     }
 
-    public Material getZ() {
-        return z;
+    public Material getCart() {
+        return cart;
+    }
+
+    public Material getCler() {
+        return cler;
+    }
+
+    public Material getArmo() {
+        return armo;
+    }
+
+    public Material getWeap() {
+        return weap;
+    }
+
+    public Material getTool() {
+        return tool;
+    }
+
+    public Material getButc() {
+        return butc;
+    }
+
+    public Material getLeat() {
+        return leat;
+    }
+
+    public Material getNitw() {
+        return nitw;
     }
 
     public String getPluginName() {

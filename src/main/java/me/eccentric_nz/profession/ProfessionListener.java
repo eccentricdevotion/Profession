@@ -1,13 +1,11 @@
 package me.eccentric_nz.profession;
 
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
-import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -35,44 +33,81 @@ public class ProfessionListener implements Listener {
                 String world = player.getWorld().getName();
                 boolean worldcheck = plugin.getConfig().getBoolean("worlds." + world);
                 if (worldcheck == true) {
-                    if (material == plugin.getF() || material == plugin.getB() || material == plugin.getL() || material == plugin.getS() || material == plugin.getP() || material == plugin.getZ()) {
+                    if (material == plugin.getFarm() || material == plugin.getButc() || material == plugin.getLibr() || material == plugin.getCart() || material == plugin.getCler() || material == plugin.getArmo() || material == plugin.getFish() || material == plugin.getFlet() || material == plugin.getLeat() || material == plugin.getNitw() || material == plugin.getShep() || material == plugin.getTool() || material == plugin.getWeap()) {
                         Villager.Profession profession = Villager.Profession.FARMER;
+                        Villager.Career career = Villager.Career.FARMER;
                         ChatColor colour = ChatColor.RESET;
                         Villager villager = (Villager) entity;
 
-                        if (material == plugin.getF()) {
+                        if (material == plugin.getFarm()) {
                             profession = Villager.Profession.FARMER;
+                            career = Villager.Career.FARMER;
                             colour = ChatColor.YELLOW;
                         }
-                        if (material == plugin.getL()) {
+                        if (material == plugin.getFish()) {
+                            profession = Villager.Profession.FARMER;
+                            career = Villager.Career.FISHERMAN;
+                            colour = ChatColor.YELLOW;
+                        }
+                        if (material == plugin.getFlet()) {
+                            profession = Villager.Profession.FARMER;
+                            career = Villager.Career.FLETCHER;
+                            colour = ChatColor.YELLOW;
+                        }
+                        if (material == plugin.getShep()) {
+                            profession = Villager.Profession.FARMER;
+                            career = Villager.Career.SHEPHERD;
+                            colour = ChatColor.YELLOW;
+                        }
+                        if (material == plugin.getLibr()) {
                             profession = Villager.Profession.LIBRARIAN;
+                            career = Villager.Career.LIBRARIAN;
                             colour = ChatColor.BLUE;
                         }
-                        if (material == plugin.getS()) {
+                        if (material == plugin.getCart()) {
+                            profession = Villager.Profession.LIBRARIAN;
+                            career = Villager.Career.CARTOGRAPHER;
+                            colour = ChatColor.BLUE;
+                        }
+                        if (material == plugin.getArmo()) {
                             profession = Villager.Profession.BLACKSMITH;
+                            career = Villager.Career.ARMORER;
                             colour = ChatColor.GRAY;
                         }
-                        if (material == plugin.getB()) {
+                        if (material == plugin.getTool()) {
+                            profession = Villager.Profession.BLACKSMITH;
+                            career = Villager.Career.TOOL_SMITH;
+                            colour = ChatColor.GRAY;
+                        }
+                        if (material == plugin.getWeap()) {
+                            profession = Villager.Profession.BLACKSMITH;
+                            career = Villager.Career.WEAPON_SMITH;
+                            colour = ChatColor.GRAY;
+                        }
+                        if (material == plugin.getButc()) {
                             profession = Villager.Profession.BUTCHER;
+                            career = Villager.Career.BUTCHER;
                             colour = ChatColor.RED;
                         }
-                        if (material == plugin.getP()) {
+                        if (material == plugin.getLeat()) {
+                            profession = Villager.Profession.BUTCHER;
+                            career = Villager.Career.LEATHERWORKER;
+                            colour = ChatColor.RED;
+                        }
+                        if (material == plugin.getCler()) {
                             profession = Villager.Profession.PRIEST;
+                            career = Villager.Career.CLERIC;
                             colour = ChatColor.DARK_RED;
                         }
-                        String message = profession.toString();
-                        if (material == plugin.getZ() && player.hasPermission("profession.zombie")) {
-                            message = "ZOMBIE VILLAGER";
-                            Location loc = villager.getLocation();
-                            villager.remove();
-                            Zombie zombie = (Zombie) loc.getWorld().spawnEntity(loc, EntityType.ZOMBIE);
-                            zombie.setVillager(true);
-                            colour = ChatColor.DARK_GREEN;
-                        } else {
-                            villager.setProfession(profession);
+                        if (material == plugin.getNitw()) {
+                            profession = Villager.Profession.NITWIT;
+                            career = Villager.Career.NITWIT;
+                            colour = ChatColor.GREEN;
                         }
+                        String message = career.toString();
+                        villager.setProfession(profession);
+                        villager.setCareer(career);
                         player.sendMessage(Constants.ssm(colour, message).get(plugin.getLanguage()));
-
                         // should the material be used up?
                         if (plugin.getConfig().getBoolean("consume")) {
                             int a = player.getInventory().getItemInHand().getAmount();
@@ -85,7 +120,7 @@ public class ProfessionListener implements Listener {
                         }
                         event.setCancelled(true);
                     } else {
-                        if (!(plugin.getServer().getPluginManager().getPlugin("Secretary") != null && (material.equals(Material.FEATHER) || material.equals(Material.INK_SACK) || material.equals(Material.PAPER)))) {
+                        if (!(plugin.getServer().getPluginManager().getPlugin("Secretary") != null && (material.equals(Material.FEATHER) || material.equals(Material.INK_SAC) || material.equals(Material.PAPER)))) {
                             player.sendMessage(Constants.NO_MATS_MESSAGE);
                         }
                     }

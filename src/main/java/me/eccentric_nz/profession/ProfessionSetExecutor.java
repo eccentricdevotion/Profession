@@ -15,7 +15,6 @@ public class ProfessionSetExecutor implements CommandExecutor {
         this.plugin = plugin;
     }
 
-    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // If the player typed /setprof then do the following...
         // check there is the right number of arguments
@@ -34,10 +33,8 @@ public class ProfessionSetExecutor implements CommandExecutor {
             try {
                 v = Villager.Profession.valueOf(villagerType);
             } catch (IllegalArgumentException e) {
-                if (!villagerType.equals("ZOMBIE")) {
-                    sender.sendMessage(ChatColor.RED + Constants.nvv().get(plugin.getLanguage()) + " farmer | librarian | butcher | blacksmith | priest | zombie");
-                    return false;
-                }
+                sender.sendMessage(ChatColor.RED + Constants.nvv().get(plugin.getLanguage()) + " farmer | librarian | butcher | blacksmith | priest");
+                return false;
             }
             // check they typed a valid material
             String setMaterial = args[1].toUpperCase();
@@ -48,7 +45,7 @@ public class ProfessionSetExecutor implements CommandExecutor {
                 return false;
             }
             // check the villager type
-            if (v != null && !villagerType.equals("ZOMBIE")) {
+            if (v != null) {
                 switch (v) {
                     case FARMER:
                         // set the config value

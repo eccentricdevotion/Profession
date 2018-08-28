@@ -14,7 +14,6 @@ public class ProfessionWorldExecutor implements CommandExecutor {
         this.plugin = plugin;
     }
 
-    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // If the player typed /setprof then do the following...
         // check there is the right number of arguments

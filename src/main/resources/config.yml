@@ -1,10 +1,17 @@
-# material names must be as specified using the bukkit material ENUM CONSTANTS as found here: http://jd.bukkit.org/apidocs/org/bukkit/Material.html
+# material names must be as specified using the bukkit material ENUM CONSTANTS as found here: https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/browse/src/main/java/org/bukkit/Material.java
 farmer_material: WHEAT
-butcher_material: RAW_BEEF
+fisherman_material: COD
+shepard_material: WHITE_WOOL
+fletcher_material: ARROW
 librarian_material: BOOK
-smith_material: IRON_INGOT
+cartographer_material: FILLED_MAP
 priest_material: REDSTONE
-zombie_material: ROTTEN_FLESH
+armorer_material: GOLD_INGOT
+weapon_smith_material: IRON_INGOT
+tool_smith__material: STICK
+butcher_material: BEEF
+leatherworker_material: LEATHER
+nitwit_material: RED_MUSHROOM
 
 # worlds: [name of world] true|false - whether Profession is active in the world
 worlds:

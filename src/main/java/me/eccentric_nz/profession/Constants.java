@@ -1,7 +1,8 @@
 package me.eccentric_nz.profession;
 
-import java.util.HashMap;
 import org.bukkit.ChatColor;
+
+import java.util.HashMap;
 
 public class Constants {
 
@@ -154,6 +155,7 @@ public class Constants {
         CONSUME_ENABLE.put("ES", "El consumo de materiales se ha desactivado");
         return CONSUME_ENABLE;
     }
+
     public static String NO_MATS_MESSAGE;
     public static String SECRETARY_ENABLED = "You have the Secretary plugin installed!";
 }
