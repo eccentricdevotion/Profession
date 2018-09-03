@@ -20,7 +20,7 @@ public class Profession extends JavaPlugin implements Listener {
     private Material butc;
     private Material leat;
     private Material nitw;
-    private final String pluginName = "[Profession]";
+    private Material zomb;
     private String language;
 
     @Override
@@ -39,22 +39,7 @@ public class Profession extends JavaPlugin implements Listener {
     }
 
     public void loadMaterials() {
-        // read the material values we need and convert them to ENUM
-        /*
-        FARMER(Villager.Profession.FARMER),
-        FISHERMAN(Villager.Profession.FARMER),
-        SHEPHERD(Villager.Profession.FARMER),
-        FLETCHER(Villager.Profession.FARMER),
-        LIBRARIAN(Villager.Profession.LIBRARIAN),
-        CARTOGRAPHER(Villager.Profession.LIBRARIAN),
-        CLERIC(Villager.Profession.PRIEST),
-        ARMORER(Villager.Profession.BLACKSMITH),
-        WEAPON_SMITH(Villager.Profession.BLACKSMITH),
-        TOOL_SMITH(Villager.Profession.BLACKSMITH),
-        BUTCHER(Villager.Profession.BUTCHER),
-        LEATHERWORKER(Villager.Profession.BUTCHER),
-        NITWIT(Villager.Profession.NITWIT);
-         */
+        // read the material values
         try {
             farm = Material.getMaterial(getConfig().getString("farmer_material"));
             fish = Material.getMaterial(getConfig().getString("fisherman_material"));
@@ -62,15 +47,15 @@ public class Profession extends JavaPlugin implements Listener {
             flet = Material.getMaterial(getConfig().getString("fletcher_material"));
             libr = Material.getMaterial(getConfig().getString("librarian_material"));
             cart = Material.getMaterial(getConfig().getString("cartographer_material"));
-            cler = Material.getMaterial(getConfig().getString("priest_material"));
+            cler = Material.getMaterial(getConfig().getString("cleric_material"));
             armo = Material.getMaterial(getConfig().getString("armorer_material"));
             weap = Material.getMaterial(getConfig().getString("weapon_smith_material"));
             tool = Material.getMaterial(getConfig().getString("tool_smith__material"));
             butc = Material.getMaterial(getConfig().getString("butcher_material"));
             leat = Material.getMaterial(getConfig().getString("leatherworker_material"));
             nitw = Material.getMaterial(getConfig().getString("nitwit_material"));
-        } catch (IllegalArgumentException e) {
-
+            zomb = Material.getMaterial(getConfig().getString("zombie_material"));
+        } catch (IllegalArgumentException ignore) {
         }
 
         // read the language value
@@ -131,8 +116,8 @@ public class Profession extends JavaPlugin implements Listener {
         return nitw;
     }
 
-    public String getPluginName() {
-        return pluginName;
+    public Material getZomb() {
+        return zomb;
     }
 
     public String getLanguage() {

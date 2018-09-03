@@ -1,11 +1,9 @@
 package me.eccentric_nz.profession;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
@@ -33,7 +31,7 @@ public class ProfessionListener implements Listener {
                 String world = player.getWorld().getName();
                 boolean worldcheck = plugin.getConfig().getBoolean("worlds." + world);
                 if (worldcheck == true) {
-                    if (material == plugin.getFarm() || material == plugin.getButc() || material == plugin.getLibr() || material == plugin.getCart() || material == plugin.getCler() || material == plugin.getArmo() || material == plugin.getFish() || material == plugin.getFlet() || material == plugin.getLeat() || material == plugin.getNitw() || material == plugin.getShep() || material == plugin.getTool() || material == plugin.getWeap()) {
+                    if (material == plugin.getFarm() || material == plugin.getButc() || material == plugin.getLibr() || material == plugin.getCart() || material == plugin.getCler() || material == plugin.getArmo() || material == plugin.getFish() || material == plugin.getFlet() || material == plugin.getLeat() || material == plugin.getNitw() || material == plugin.getShep() || material == plugin.getTool() || material == plugin.getWeap() || material == plugin.getZomb()) {
                         Villager.Profession profession = Villager.Profession.FARMER;
                         Villager.Career career = Villager.Career.FARMER;
                         ChatColor colour = ChatColor.RESET;
@@ -104,9 +102,21 @@ public class ProfessionListener implements Listener {
                             career = Villager.Career.NITWIT;
                             colour = ChatColor.GREEN;
                         }
-                        String message = career.toString();
-                        villager.setProfession(profession);
-                        villager.setCareer(career);
+                        String message;
+                        if (material == plugin.getZomb() && player.hasPermission("profession.zombie")) {
+                            profession = villager.getProfession();
+//                            career = villager.getCareer();
+                            message = "ZOMBIE VILLAGER";
+                            Location loc = villager.getLocation();
+                            villager.remove();
+                            ZombieVillager zombie = (ZombieVillager) loc.getWorld().spawnEntity(loc, EntityType.ZOMBIE_VILLAGER);
+                            zombie.setVillagerProfession(profession);
+                            colour = ChatColor.DARK_PURPLE;
+                        } else {
+                            message = career.toString();
+                            villager.setProfession(profession);
+                            villager.setCareer(career);
+                        }
                         player.sendMessage(Constants.ssm(colour, message).get(plugin.getLanguage()));
                         // should the material be used up?
                         if (plugin.getConfig().getBoolean("consume")) {

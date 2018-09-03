@@ -5,13 +5,14 @@ shepard_material: WHITE_WOOL
 fletcher_material: ARROW
 librarian_material: BOOK
 cartographer_material: FILLED_MAP
-priest_material: REDSTONE
+cleric_material: REDSTONE
 armorer_material: GOLD_INGOT
 weapon_smith_material: IRON_INGOT
 tool_smith__material: STICK
 butcher_material: BEEF
 leatherworker_material: LEATHER
 nitwit_material: RED_MUSHROOM
+zombie_material: ROTTEN_FLESH
 
 # worlds: [name of world] true|false - whether Profession is active in the world
 worlds:

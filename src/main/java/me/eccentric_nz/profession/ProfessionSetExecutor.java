@@ -28,13 +28,14 @@ public class ProfessionSetExecutor implements CommandExecutor {
                 return false;
             }
             String villagerType = args[0].toUpperCase();
-            // check they typed a valid villager type
-            Villager.Profession v = null;
-            try {
-                v = Villager.Profession.valueOf(villagerType);
-            } catch (IllegalArgumentException e) {
-                sender.sendMessage(ChatColor.RED + Constants.nvv().get(plugin.getLanguage()) + " farmer | librarian | butcher | blacksmith | priest");
-                return false;
+            if (!villagerType.equals("ZOMBIE")) {
+                // check they typed a valid villager career
+                try {
+                    Villager.Career c = Villager.Career.valueOf(villagerType);
+                } catch (IllegalArgumentException e) {
+                    sender.sendMessage(ChatColor.RED + Constants.nvv().get(plugin.getLanguage()) + " farmer | fisherman | shepard | librarian | cartographer | cleric | armorer | weapon_smith | tool_smith | butcher | leatherworker | nitwit | zombie");
+                    return false;
+                }
             }
             // check they typed a valid material
             String setMaterial = args[1].toUpperCase();
@@ -44,33 +45,8 @@ public class ProfessionSetExecutor implements CommandExecutor {
                 sender.sendMessage(ChatColor.RED + Constants.nvm().get(plugin.getLanguage()));
                 return false;
             }
-            // check the villager type
-            if (v != null) {
-                switch (v) {
-                    case FARMER:
-                        // set the config value
-                        plugin.getConfig().set("farmer_material", setMaterial);
-                        break;
-                    case BUTCHER:
-                        // set the config value
-                        plugin.getConfig().set("butcher_material", setMaterial);
-                        break;
-                    case LIBRARIAN:
-                        // set the config value
-                        plugin.getConfig().set("librarian_material", setMaterial);
-                        break;
-                    case BLACKSMITH:
-                        // set the config value
-                        plugin.getConfig().set("smith_material", setMaterial);
-                        break;
-                    default:
-                        // set the config value
-                        plugin.getConfig().set("priest_material", setMaterial);
-                        break;
-                }
-            } else {
-                plugin.getConfig().set("zombie_material", setMaterial);
-            }
+            // set the config
+            plugin.getConfig().set(villagerType.toLowerCase() + "_material", setMaterial);
             plugin.saveConfig();
             plugin.loadMaterials();
             sender.sendMessage(Constants.vms(villagerType, setMaterial).get(plugin.getLanguage()));

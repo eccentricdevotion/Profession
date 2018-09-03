@@ -157,5 +157,4 @@ public class Constants {
     }
 
     public static String NO_MATS_MESSAGE;
-    public static String SECRETARY_ENABLED = "You have the Secretary plugin installed!";
 }

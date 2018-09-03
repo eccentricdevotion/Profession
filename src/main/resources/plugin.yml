@@ -19,8 +19,8 @@ permissions:
 commands:
   setprof:
     aliases: sprof
-    description: Change the material needed to change a villager's profession.
-    usage: /<command> [Villager type] [Material]
+    description: Change the material needed to change a villager's career.
+    usage: /<command> [Career type] [Material]
     permission: profession.setprof
     permission-message: You don't have the permission to set profession materials.
   worldprof:
