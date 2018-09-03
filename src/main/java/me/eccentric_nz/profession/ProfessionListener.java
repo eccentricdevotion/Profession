@@ -22,7 +22,7 @@ public class ProfessionListener implements Listener {
         // get player
         Player player = event.getPlayer();
         Entity entity = event.getRightClicked();
-        Material material = player.getItemInHand().getType();
+        Material material = player.getInventory().getItemInMainHand().getType();
 
         if (entity.getType().equals(EntityType.VILLAGER)) {
             if (player.hasPermission("profession.change")) {
@@ -104,13 +104,17 @@ public class ProfessionListener implements Listener {
                         }
                         String message;
                         if (material == plugin.getZomb() && player.hasPermission("profession.zombie")) {
-                            profession = villager.getProfession();
+                            Villager.Profession vprofession = villager.getProfession();
+                            boolean adult = villager.isAdult();
 //                            career = villager.getCareer();
-                            message = "ZOMBIE VILLAGER";
-                            Location loc = villager.getLocation();
                             villager.remove();
-                            ZombieVillager zombie = (ZombieVillager) loc.getWorld().spawnEntity(loc, EntityType.ZOMBIE_VILLAGER);
-                            zombie.setVillagerProfession(profession);
+                            plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                                Location loc = villager.getLocation();
+                                ZombieVillager zombie = (ZombieVillager) loc.getWorld().spawnEntity(loc, EntityType.ZOMBIE_VILLAGER);
+                                zombie.setVillagerProfession(vprofession);
+                                zombie.setBaby(!adult);
+                            }, 2L);
+                            message = "ZOMBIE VILLAGER";
                             colour = ChatColor.DARK_PURPLE;
                         } else {
                             message = career.toString();
