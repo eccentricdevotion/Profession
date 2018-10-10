@@ -13,10 +13,11 @@ public class ProfessionConsumeExecutor implements CommandExecutor {
         this.plugin = plugin;
     }
 
+    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        // If the player typed /setprof then do the following...
+        // If the player typed /consumeprof or /messageprof then do the following...
         // check there is the right number of arguments
-        if (cmd.getName().equalsIgnoreCase("consumeprof")) {
+        if (cmd.getName().equalsIgnoreCase("consumeprof") || cmd.getName().equalsIgnoreCase("messageprof")) {
             if (args.length > 1) {
                 sender.sendMessage(ChatColor.RED + Constants.tma().get(plugin.getLanguage()));
                 return false;
@@ -31,11 +32,17 @@ public class ProfessionConsumeExecutor implements CommandExecutor {
                 sender.sendMessage(ChatColor.RED + Constants.ntf().get(plugin.getLanguage()));
                 return false;
             }
+            String which = (cmd.getName().equalsIgnoreCase("consumeprof")) ? "consume" : "message";
             // set the config value
-            plugin.getConfig().set("consume", Boolean.valueOf(consume));
+            plugin.getConfig().set(which, Boolean.valueOf(consume));
             plugin.saveConfig();
             plugin.loadMaterials();
-            String css = (consume.equals("false")) ? Constants.cds().get(plugin.getLanguage()) : Constants.cen().get(plugin.getLanguage());
+            String css;
+            if (consume.equals("false")) {
+                css = (which.equals("consume")) ? Constants.cds().get(plugin.getLanguage()) : Constants.mds().get(plugin.getLanguage());
+            } else {
+                css = (which.equals("consume")) ? Constants.cen().get(plugin.getLanguage()) : Constants.men().get(plugin.getLanguage());
+            }
             sender.sendMessage(css);
             return true;
         }

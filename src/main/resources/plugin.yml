@@ -7,7 +7,7 @@ name: Profession
 load: POSTWORLD
 dev-url: http://dev.bukkit.org/server-mods/profession/
 url: http://www.thenosefairy.co.nz/
-version: 1.3.6
+version: 1.3.7
 api-version: 1.13
 permissions:
   profession.change:
@@ -15,6 +15,13 @@ permissions:
     default: op
   profession.zombie:
     description: Allow players to change villagers into zombie villagers.
+    default: op
+  profession.admin:
+    children:
+      profession.setprof: true
+      profession.world: true
+      profession.consume: true
+      profession.message: true
     default: op
 commands:
   setprof:
@@ -35,3 +42,9 @@ commands:
     usage: /<command> [true|false]
     permission: profession.consume
     permission-message: You don't have the permission to toggle material consumption on or off.
+  messageprof:
+    aliases: mprof
+    description: Toggle player messaging off and on.
+    usage: /<command> [true|false]
+    permission: profession.message
+    permission-message: You don't have the permission to toggle player messaging on or off.

@@ -134,7 +134,7 @@ public class ProfessionListener implements Listener {
                         }
                         event.setCancelled(true);
                     } else {
-                        if (!(plugin.getServer().getPluginManager().getPlugin("Secretary") != null && (material.equals(Material.FEATHER) || material.equals(Material.INK_SAC) || material.equals(Material.PAPER)))) {
+                        if (!(plugin.getServer().getPluginManager().getPlugin("Secretary") != null && (material.equals(Material.FEATHER) || material.equals(Material.INK_SAC) || material.equals(Material.PAPER))) && plugin.getConfig().getBoolean("message")) {
                             player.sendMessage(Constants.NO_MATS_MESSAGE);
                         }
                     }

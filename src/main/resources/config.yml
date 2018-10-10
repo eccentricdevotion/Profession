@@ -28,3 +28,6 @@ lang: EN
 
 # consume: true|false - whether right-clicking on the villager consumes the material
 consume: false
+
+# message: true|false - whether to message the player if they don't have a valid material
+message: true

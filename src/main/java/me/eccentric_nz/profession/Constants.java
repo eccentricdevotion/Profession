@@ -59,10 +59,10 @@ public class Constants {
     public static HashMap<String, String> nvm() {
         // command not valid material type messages
         HashMap NOT_VALID_MATERIAL = new HashMap<String, String>();
-        NOT_VALID_MATERIAL.put("EN", "That is not a valid Material!\nTry checking the Materials.txt file in the plugins/Profession folder");
-        NOT_VALID_MATERIAL.put("FR", "Ce n'est pas un matériau valide! Essayez de vérifier le fichier Materials.txt dans les dossier plugins/Profession");
-        NOT_VALID_MATERIAL.put("DE", "Das ist keine gültige werkstoff! Versuchen Sie, die Materials.txt Datei in den Ordner plugins/Professions");
-        NOT_VALID_MATERIAL.put("ES", "Eso no es un material válido! Prueba a revisar el archivo Materials.txt en los carpeta plugins/Profession");
+        NOT_VALID_MATERIAL.put("EN", "That is not a valid Material!");
+        NOT_VALID_MATERIAL.put("FR", "Ce n'est pas un matériau valide!");
+        NOT_VALID_MATERIAL.put("DE", "Das ist keine gültige werkstoff!");
+        NOT_VALID_MATERIAL.put("ES", "Eso no es un material válido!");
         return NOT_VALID_MATERIAL;
     }
 
@@ -77,7 +77,7 @@ public class Constants {
     }
 
     public static HashMap<String, String> vms(String vil, String typ) {
-        // profession set success messages
+        // profession set material messages
         HashMap MAT_SET_OK = new HashMap<String, String>();
         MAT_SET_OK.put("EN", "The " + vil + " material was set to " + typ);
         MAT_SET_OK.put("FR", "Le matériel des " + vil + " a été changé pour " + typ);
@@ -137,7 +137,7 @@ public class Constants {
     }
 
     public static HashMap<String, String> cen() {
-        // consume cofig enabled messages
+        // consume config enabled messages
         HashMap CONSUME_ENABLE = new HashMap<String, String>();
         CONSUME_ENABLE.put("EN", "Consuming materials was enabled");
         CONSUME_ENABLE.put("FR", "La consommation de matériaux a été activée");
@@ -148,12 +148,32 @@ public class Constants {
 
     public static HashMap<String, String> cds() {
         // consume config disabled messages
-        HashMap CONSUME_ENABLE = new HashMap<String, String>();
-        CONSUME_ENABLE.put("EN", "Consuming materials was disabled");
-        CONSUME_ENABLE.put("FR", "La consommation de matériaux a été désactivé");
-        CONSUME_ENABLE.put("DE", "Der konsum von materialien war deaktiviert");
-        CONSUME_ENABLE.put("ES", "El consumo de materiales se ha desactivado");
-        return CONSUME_ENABLE;
+        HashMap CONSUME_DISABLE = new HashMap<String, String>();
+        CONSUME_DISABLE.put("EN", "Consuming materials was disabled");
+        CONSUME_DISABLE.put("FR", "La consommation de matériaux a été désactivé");
+        CONSUME_DISABLE.put("DE", "Der konsum von materialien war deaktiviert");
+        CONSUME_DISABLE.put("ES", "El consumo de materiales se ha desactivado");
+        return CONSUME_DISABLE;
+    }
+
+    public static HashMap<String, String> men() {
+        // message config enabled messages
+        HashMap MESSAGE_ENABLE = new HashMap<String, String>();
+        MESSAGE_ENABLE.put("EN", "Player messages were enabled");
+        MESSAGE_ENABLE.put("FR", "Les messages du joueur ont été activés");
+        MESSAGE_ENABLE.put("DE", "Spieler nachrichten wurden aktiviert");
+        MESSAGE_ENABLE.put("ES", "Los mensajes del jugador fueron habilitados");
+        return MESSAGE_ENABLE;
+    }
+
+    public static HashMap<String, String> mds() {
+        // message config disabled messages
+        HashMap MESSAGE_DISABLE = new HashMap<String, String>();
+        MESSAGE_DISABLE.put("EN", "Player messages were disabled");
+        MESSAGE_DISABLE.put("FR", "Les messages du joueur ont été désactivés");
+        MESSAGE_DISABLE.put("DE", "Spieler nachrichten wurden deaktiviert");
+        MESSAGE_DISABLE.put("ES", "Los mensajes del jugador fueron deshabilitados");
+        return MESSAGE_DISABLE;
     }
 
     public static String NO_MATS_MESSAGE;

@@ -30,7 +30,9 @@ public class Profession extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new ProfessionListener(this), this);
         getCommand("setprof").setExecutor(new ProfessionSetExecutor(this));
         getCommand("worldprof").setExecutor(new ProfessionWorldExecutor(this));
-        getCommand("consumeprof").setExecutor(new ProfessionConsumeExecutor(this));
+        ProfessionConsumeExecutor professionConsumeExecutor = new ProfessionConsumeExecutor(this);
+        getCommand("consumeprof").setExecutor(professionConsumeExecutor);
+        getCommand("messageprof").setExecutor(professionConsumeExecutor);
     }
 
     @Override
@@ -60,6 +62,10 @@ public class Profession extends JavaPlugin implements Listener {
 
         // read the language value
         language = getConfig().getString("lang");
+        if (!getConfig().contains("message")) {
+            getConfig().set("message", true);
+            saveConfig();
+        }
 
         Constants.NO_MATS_MESSAGE = Constants.nms().get(language) + ChatColor.YELLOW + farm.toString() + " -> FARMER\n" + ChatColor.YELLOW + fish.toString() + " -> FISHERMAN\n" + ChatColor.YELLOW + shep.toString() + " -> SHEPHERD\n" + ChatColor.YELLOW + flet.toString() + " -> FLETCHER\n" + ChatColor.RED + butc.toString() + " -> BUTCHER\n" + ChatColor.RED + leat.toString() + " -> LEATHERWORKER\n" + ChatColor.BLUE + libr.toString() + " -> LIBRARIAN\n" + ChatColor.BLUE + cart.toString() + " -> CARTOGRAPHER\n" + ChatColor.GRAY + armo.toString() + " -> ARMORER\n" + ChatColor.GRAY + weap.toString() + " -> WEAPON_SMITH\n" + ChatColor.GRAY + tool.toString() + " -> TOOL_SMITH\n" + ChatColor.DARK_RED + cler + " -> CLERIC\n" + ChatColor.DARK_GREEN + nitw.toString() + " -> NITWIT\n" + ChatColor.DARK_PURPLE + zomb.toString() + " -> ZOMBIE_VILLAGER";
     }
