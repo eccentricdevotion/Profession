@@ -26,7 +26,6 @@ public class ProfessionListener implements Listener {
 
         if (entity.getType().equals(EntityType.VILLAGER)) {
             if (player.hasPermission("profession.change")) {
-
                 // check if the config setting for this world allows profession changing
                 String world = player.getWorld().getName();
                 boolean worldcheck = plugin.getConfig().getBoolean("worlds." + world);
@@ -139,10 +138,14 @@ public class ProfessionListener implements Listener {
                         }
                     }
                 } else {
-                    player.sendMessage(Constants.pna(world).get(plugin.getLanguage()));
+                    if (plugin.getConfig().getBoolean("message")) {
+                        player.sendMessage(Constants.pna(world).get(plugin.getLanguage()));
+                    }
                 }
             } else {
-                player.sendMessage(Constants.npm().get(plugin.getLanguage()));
+                if (plugin.getConfig().getBoolean("message")) {
+                    player.sendMessage(Constants.npm().get(plugin.getLanguage()));
+                }
             }
         }
     }
