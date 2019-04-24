@@ -8,7 +8,8 @@ cartographer_material: FILLED_MAP
 cleric_material: REDSTONE
 armorer_material: GOLD_INGOT
 weapon_smith_material: IRON_INGOT
-tool_smith__material: STICK
+tool_smith_material: STICK
+mason_smith_material: STONE
 butcher_material: BEEF
 leatherworker_material: LEATHER
 nitwit_material: RED_MUSHROOM

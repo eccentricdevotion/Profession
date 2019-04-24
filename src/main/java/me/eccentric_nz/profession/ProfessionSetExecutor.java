@@ -34,7 +34,7 @@ public class ProfessionSetExecutor implements CommandExecutor {
                 try {
                     Villager.Profession c = Villager.Profession.valueOf(villagerType);
                 } catch (IllegalArgumentException e) {
-                    sender.sendMessage(ChatColor.RED + Constants.nvv().get(plugin.getLanguage()) + " farmer | fisherman | shepard | librarian | cartographer | cleric | armorer | weaponsmith | toolsmith | butcher | leatherworker | nitwit | zombie");
+                    sender.sendMessage(ChatColor.RED + Constants.nvv().get(plugin.getLanguage()) + " farmer | fisherman | shepard | librarian | cartographer | cleric | armorer | weaponsmith | toolsmith | mason | butcher | leatherworker | nitwit | zombie");
                     return false;
                 }
             }

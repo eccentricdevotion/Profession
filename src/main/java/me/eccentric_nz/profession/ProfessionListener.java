@@ -89,6 +89,10 @@ public class ProfessionListener implements Listener {
                             profession = Villager.Profession.NITWIT;
                             colour = ChatColor.GREEN;
                         }
+                        if (material == plugin.getMaso()) {
+                            profession = Villager.Profession.MASON;
+                            colour = ChatColor.GRAY;
+                        }
                         String message;
                         if (material == plugin.getZomb() && player.hasPermission("profession.zombie")) {
                             Villager.Profession vprofession = villager.getProfession();

@@ -19,6 +19,7 @@ public class Profession extends JavaPlugin implements Listener {
     private Material tool;
     private Material butc;
     private Material leat;
+    private Material maso;
     private Material nitw;
     private Material zomb;
     private String language;
@@ -55,6 +56,7 @@ public class Profession extends JavaPlugin implements Listener {
             tool = Material.getMaterial(getConfig().getString("tool_smith__material"));
             butc = Material.getMaterial(getConfig().getString("butcher_material"));
             leat = Material.getMaterial(getConfig().getString("leatherworker_material"));
+            maso = Material.getMaterial(getConfig().getString("mason_material", "STONE"));
             nitw = Material.getMaterial(getConfig().getString("nitwit_material"));
             zomb = Material.getMaterial(getConfig().getString("zombie_material"));
         } catch (IllegalArgumentException ignore) {
@@ -67,7 +69,7 @@ public class Profession extends JavaPlugin implements Listener {
             saveConfig();
         }
 
-        Constants.NO_MATS_MESSAGE = Constants.nms().get(language) + ChatColor.YELLOW + farm.toString() + " -> FARMER\n" + ChatColor.YELLOW + fish.toString() + " -> FISHERMAN\n" + ChatColor.YELLOW + shep.toString() + " -> SHEPHERD\n" + ChatColor.YELLOW + flet.toString() + " -> FLETCHER\n" + ChatColor.RED + butc.toString() + " -> BUTCHER\n" + ChatColor.RED + leat.toString() + " -> LEATHERWORKER\n" + ChatColor.BLUE + libr.toString() + " -> LIBRARIAN\n" + ChatColor.BLUE + cart.toString() + " -> CARTOGRAPHER\n" + ChatColor.GRAY + armo.toString() + " -> ARMORER\n" + ChatColor.GRAY + weap.toString() + " -> WEAPON_SMITH\n" + ChatColor.GRAY + tool.toString() + " -> TOOL_SMITH\n" + ChatColor.DARK_RED + cler + " -> CLERIC\n" + ChatColor.DARK_GREEN + nitw.toString() + " -> NITWIT\n" + ChatColor.DARK_PURPLE + zomb.toString() + " -> ZOMBIE_VILLAGER";
+        Constants.NO_MATS_MESSAGE = Constants.nms().get(language) + ChatColor.YELLOW + farm.toString() + " -> FARMER\n" + ChatColor.YELLOW + fish.toString() + " -> FISHERMAN\n" + ChatColor.YELLOW + shep.toString() + " -> SHEPHERD\n" + ChatColor.YELLOW + flet.toString() + " -> FLETCHER\n" + ChatColor.RED + butc.toString() + " -> BUTCHER\n" + ChatColor.RED + leat.toString() + " -> LEATHERWORKER\n" + ChatColor.BLUE + libr.toString() + " -> LIBRARIAN\n" + ChatColor.BLUE + cart.toString() + " -> CARTOGRAPHER\n" + ChatColor.GRAY + armo.toString() + " -> ARMORER\n" + ChatColor.GRAY + weap.toString() + " -> WEAPON_SMITH\n" + ChatColor.GRAY + tool.toString() + " -> TOOL_SMITH\n" + ChatColor.GRAY + maso.toString() + "  -> MASON\n" + ChatColor.DARK_RED + cler + " -> CLERIC\n" + ChatColor.DARK_GREEN + nitw.toString() + " -> NITWIT\n" + ChatColor.DARK_PURPLE + zomb.toString() + " -> ZOMBIE_VILLAGER";
     }
 
     public Material getFarm() {
@@ -108,6 +110,10 @@ public class Profession extends JavaPlugin implements Listener {
 
     public Material getTool() {
         return tool;
+    }
+
+    public Material getMaso() {
+        return maso;
     }
 
     public Material getButc() {
