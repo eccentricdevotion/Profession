@@ -15,6 +15,7 @@ public class ProfessionSetExecutor implements CommandExecutor {
         this.plugin = plugin;
     }
 
+    @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         // If the player typed /setprof then do the following...
         // check there is the right number of arguments
@@ -31,9 +32,9 @@ public class ProfessionSetExecutor implements CommandExecutor {
             if (!villagerType.equals("ZOMBIE")) {
                 // check they typed a valid villager career
                 try {
-                    Villager.Career c = Villager.Career.valueOf(villagerType);
+                    Villager.Profession c = Villager.Profession.valueOf(villagerType);
                 } catch (IllegalArgumentException e) {
-                    sender.sendMessage(ChatColor.RED + Constants.nvv().get(plugin.getLanguage()) + " farmer | fisherman | shepard | librarian | cartographer | cleric | armorer | weapon_smith | tool_smith | butcher | leatherworker | nitwit | zombie");
+                    sender.sendMessage(ChatColor.RED + Constants.nvv().get(plugin.getLanguage()) + " farmer | fisherman | shepard | librarian | cartographer | cleric | armorer | weaponsmith | toolsmith | butcher | leatherworker | nitwit | zombie");
                     return false;
                 }
             }

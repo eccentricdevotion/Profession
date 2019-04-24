@@ -7,8 +7,8 @@ name: Profession
 load: POSTWORLD
 dev-url: http://dev.bukkit.org/server-mods/profession/
 url: http://www.thenosefairy.co.nz/
-version: 1.3.8
-api-version: 1.13
+version: 1.3.9
+api-version: 1.14
 permissions:
   profession.change:
     description: Allow players to change the profession of villagers.
