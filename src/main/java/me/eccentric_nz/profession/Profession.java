@@ -44,21 +44,21 @@ public class Profession extends JavaPlugin implements Listener {
     public void loadMaterials() {
         // read the material values
         try {
-            farm = Material.getMaterial(getConfig().getString("farmer_material"));
-            fish = Material.getMaterial(getConfig().getString("fisherman_material"));
-            shep = Material.getMaterial(getConfig().getString("shepard_material"));
-            flet = Material.getMaterial(getConfig().getString("fletcher_material"));
-            libr = Material.getMaterial(getConfig().getString("librarian_material"));
-            cart = Material.getMaterial(getConfig().getString("cartographer_material"));
-            cler = Material.getMaterial(getConfig().getString("cleric_material"));
-            armo = Material.getMaterial(getConfig().getString("armorer_material"));
-            weap = Material.getMaterial(getConfig().getString("weapon_smith_material"));
-            tool = Material.getMaterial(getConfig().getString("tool_smith__material"));
-            butc = Material.getMaterial(getConfig().getString("butcher_material"));
-            leat = Material.getMaterial(getConfig().getString("leatherworker_material"));
-            maso = Material.getMaterial(getConfig().getString("mason_material", "STONE"));
-            nitw = Material.getMaterial(getConfig().getString("nitwit_material"));
-            zomb = Material.getMaterial(getConfig().getString("zombie_material"));
+            farm = Material.valueOf(getConfig().getString("farmer_material", "WHEAT"));
+            fish = Material.valueOf(getConfig().getString("fisherman_material", "COD"));
+            shep = Material.valueOf(getConfig().getString("shepard_material", "WHITE_WOOL"));
+            flet = Material.valueOf(getConfig().getString("fletcher_material", "ARROW"));
+            libr = Material.valueOf(getConfig().getString("librarian_material", "BOOK"));
+            cart = Material.valueOf(getConfig().getString("cartographer_material", "FILLED_MAP"));
+            cler = Material.valueOf(getConfig().getString("cleric_material", "REDSTONE"));
+            armo = Material.valueOf(getConfig().getString("armorer_material", "GOLD_INGOT"));
+            weap = Material.valueOf(getConfig().getString("weapon_smith_material", "IRON_INGOT"));
+            tool = Material.valueOf(getConfig().getString("tool_smith__material", "STICK"));
+            butc = Material.valueOf(getConfig().getString("butcher_material", "BEEF"));
+            leat = Material.valueOf(getConfig().getString("leatherworker_material", "LEATHER"));
+            maso = Material.valueOf(getConfig().getString("mason_material", "STONE"));
+            nitw = Material.valueOf(getConfig().getString("nitwit_material", "RED_MUSHROOM"));
+            zomb = Material.valueOf(getConfig().getString("zombie_material", "ROTTEN_FLESH"));
         } catch (IllegalArgumentException ignore) {
         }
 
