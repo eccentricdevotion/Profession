@@ -28,13 +28,11 @@ public class ProfessionListener implements Listener {
             if (player.hasPermission("profession.change")) {
                 // check if the config setting for this world allows profession changing
                 String world = player.getWorld().getName();
-                boolean worldcheck = plugin.getConfig().getBoolean("worlds." + world);
-                if (worldcheck == true) {
+                if (plugin.getConfig().getBoolean("worlds." + world)) {
                     if (material == plugin.getFarm() || material == plugin.getButc() || material == plugin.getLibr() || material == plugin.getCart() || material == plugin.getCler() || material == plugin.getArmo() || material == plugin.getFish() || material == plugin.getFlet() || material == plugin.getLeat() || material == plugin.getNitw() || material == plugin.getShep() || material == plugin.getTool() || material == plugin.getWeap() || material == plugin.getZomb()) {
                         Villager.Profession profession = Villager.Profession.FARMER;
                         ChatColor colour = ChatColor.RESET;
                         Villager villager = (Villager) entity;
-
                         if (material == plugin.getFarm()) {
                             profession = Villager.Profession.FARMER;
                             colour = ChatColor.YELLOW;
@@ -45,7 +43,6 @@ public class ProfessionListener implements Listener {
                         }
                         if (material == plugin.getFlet()) {
                             profession = Villager.Profession.FLETCHER;
-
                             colour = ChatColor.YELLOW;
                         }
                         if (material == plugin.getShep()) {
@@ -66,7 +63,6 @@ public class ProfessionListener implements Listener {
                         }
                         if (material == plugin.getTool()) {
                             profession = Villager.Profession.TOOLSMITH;
-
                             colour = ChatColor.GRAY;
                         }
                         if (material == plugin.getWeap()) {
@@ -115,7 +111,7 @@ public class ProfessionListener implements Listener {
                         // should the material be used up?
                         if (plugin.getConfig().getBoolean("consume")) {
                             int a = player.getInventory().getItemInHand().getAmount();
-                            int a2 = new Integer(a - 1);
+                            int a2 = a - 1;
                             if (a2 > 0) {
                                 player.getInventory().getItemInHand().setAmount(a2);
                             } else {
